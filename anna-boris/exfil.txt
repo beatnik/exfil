@@ -1,0 +1,25 @@
+inside:
+
+send /gallery/page/X GET with headers:
+- blocks (#) - b
+- blocksize (# bytes) - bs
+- filesize (filesize) - ts
+- header-name (string) - h
+- header-checksum (algo) - cs
+- encryption (algo) - e
+- encryption-key (psk) - ek
+- random-seq (bool) - e
+- whoami (inside/outside) - w
+- mode (-default gallery) - m
+- filename (filename) - f
+- status (-default 404) - s
+- format (hex / uuencode) - f
+
+
+flow:
+client: send GET /gallery/page/X with handshake parameters
+server: return stub data (-default gallery page with block # images)
+client: sent GET /xxxxxx for each image, include data in header (according to parameters)
+
+repeat for multiple files (X = stub page value, encoded header in hash)
+
